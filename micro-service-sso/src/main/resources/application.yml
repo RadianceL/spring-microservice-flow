@@ -1,8 +1,8 @@
 server:
-  port: 9000
+  port: 8081
 spring:
   application:
-    name: micro-service-router
+    name: micro-service-sso
   cloud:
     nacos:
       discovery:
