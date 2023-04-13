@@ -2,13 +2,39 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 
 plugins { // 插件配置
     id("java-library")
-    id("com.diffplug.spotless") version "5.0.0"
+    id("com.diffplug.spotless") version Dependencies.SPOTLESS_VERSION
+    id("org.springframework.boot") version Dependencies.SPRING_BOOT_VERSION
+    id("io.spring.dependency-management") version Dependencies.SPRING_DEPENDENCY_MANAGEMENT_VERSION
+    id("org.graalvm.buildtools.native") version Dependencies.GRAALVM_NATIVE_VERSION
 }
 
-// 定义BOM
-dependencies {
-    platform("org.springframework.boot:spring-boot-dependencies:3.0.5")
-    platform("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0")
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "com.diffplug.spotless" )
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "org.graalvm.buildtools.native")
+    apply(plugin = "io.spring.dependency-management")
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+
+    dependencies{
+        annotationProcessor("org.projectlombok:lombok")
+    }
+
+    dependencyManagement{
+        dependencies{
+            dependency(Dependencies.Mybatis.MYBATIS_SPRING_BOOT_STARTER)
+        }
+    }
+
+    configure<SpotlessExtension> {
+        java {
+            googleJavaFormat()
+            target("**/*.java")
+        }
+    }
 }
 
 allprojects {
@@ -32,21 +58,6 @@ allprojects {
                 password = project.findProperty("aliyun.password") as String?
             }
             setUrl("https://packages.aliyun.com/maven/repository/2078915-snapshot-FW4VG4/")
-        }
-    }
-}
-
-subprojects {
-    apply(plugin = "java")
-    apply(plugin = "com.diffplug.spotless" )
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
-
-    configure<SpotlessExtension> {
-        java {
-            googleJavaFormat()
-            target("**/*.java")
         }
     }
 }
