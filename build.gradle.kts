@@ -20,12 +20,20 @@ subprojects {
     }
 
     dependencies{
+        compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
     }
 
     dependencyManagement{
         dependencies{
+            // mybatis依赖
             dependency(Dependencies.Mybatis.MYBATIS_SPRING_BOOT_STARTER)
+            imports {
+                // spring-cloud-dependencies依赖
+                mavenBom(Dependencies.SpringCloud.SPRING_CLOUD_DEPENDENCIES)
+                // spring-cloud-alibaba-dependencies依赖
+                mavenBom(Dependencies.SpringCloud.SPRING_CLOUD_ALIBABA_DEPENDENCIES)
+            }
         }
     }
 

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spring-microservice-flow
+  cloud:
+    nacos:
+      server-addr: ${CLOUD_SERVER:124.222.147.194:8848}
