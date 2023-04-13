@@ -7,8 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ${DESCRIPTION}
- *
+ * 路由服务启动类
  * @author eddie.lys
  * @since 2023/4/10
  */
