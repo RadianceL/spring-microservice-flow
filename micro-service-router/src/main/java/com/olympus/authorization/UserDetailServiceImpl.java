@@ -16,12 +16,13 @@ import java.util.stream.Collectors;
 public class UserDetailServiceImpl implements ReactiveUserDetailsService {
     @Override
     public Mono<UserDetails> findByUsername(String username) {
-        return userRepository.findByUsername(username).map(user->{
-            List<SimpleGrantedAuthority> authorities = user.getAuthorities().stream()
-                    .map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-            return User.withUsername(user.getUsername()).password(user.getPassword())
-                    .authorities(authorities)
-                    .build();
-        });
+//        return userRepository.findByUsername(username).map(user->{
+//            List<SimpleGrantedAuthority> authorities = user.getAuthorities().stream()
+//                    .map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+//            return User.withUsername(user.getUsername()).password(user.getPassword())
+//                    .authorities(authorities)
+//                    .build();
+//        });
+        return null;
     }
 }
