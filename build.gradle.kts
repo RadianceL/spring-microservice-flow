@@ -30,6 +30,7 @@ subprojects {
     // 为子项目添加依赖管理
     dependencyManagement{
         dependencies{
+            dependency(Dependencies.Tools.ALIBABA_FASTJSON2_DEPENDENCIES)
             // mybatis依赖
             dependency(Dependencies.Mybatis.MYBATIS_SPRING_BOOT_STARTER)
             imports {

@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: micro-service-sso
-  cloud:
-    nacos:
-      server-addr: ${CLOUD_SERVER:124.222.147.194:8848}
