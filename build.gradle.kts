@@ -1,6 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 
-plugins { // 插件配置
+plugins {
+    // 插件配置
     id("java-library")
     id("com.diffplug.spotless") version Dependencies.SPOTLESS_VERSION
     id("org.springframework.boot") version Dependencies.SPRING_BOOT_VERSION
@@ -9,6 +10,7 @@ plugins { // 插件配置
 }
 
 subprojects {
+    // 为子项目应用插件
     apply(plugin = "java")
     apply(plugin = "com.diffplug.spotless" )
     apply(plugin = "org.springframework.boot")
@@ -19,11 +21,13 @@ subprojects {
         useJUnitPlatform()
     }
 
+    // 为子项目添加依赖
     dependencies{
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
     }
 
+    // 为子项目添加依赖管理
     dependencyManagement{
         dependencies{
             // mybatis依赖
