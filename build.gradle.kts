@@ -2,7 +2,6 @@ plugins {
     // 插件配置
     id("java")
     id("maven-publish")
-    id("com.diffplug.spotless") version Dependencies.SPOTLESS_VERSION
     id("io.spring.dependency-management") version Dependencies.SPRING_DEPENDENCY_MANAGEMENT_VERSION
 }
 
@@ -18,7 +17,6 @@ publishing {
 subprojects {
     // 为子项目应用插件
     apply(plugin = "java")
-    apply(plugin = "com.diffplug.spotless" )
     apply(plugin = "io.spring.dependency-management")
 
     tasks.withType<Test> {
