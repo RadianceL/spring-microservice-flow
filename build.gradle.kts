@@ -1,20 +1,24 @@
-import com.diffplug.gradle.spotless.SpotlessExtension
-
 plugins {
     // 插件配置
-    id("java-library")
+    id("java")
+    id("maven-publish")
     id("com.diffplug.spotless") version Dependencies.SPOTLESS_VERSION
-    id("org.springframework.boot") version Dependencies.SPRING_BOOT_VERSION
     id("io.spring.dependency-management") version Dependencies.SPRING_DEPENDENCY_MANAGEMENT_VERSION
-    id("org.graalvm.buildtools.native") version Dependencies.GRAALVM_NATIVE_VERSION
+}
+
+publishing {
+    publications {
+        register("mavenJava", MavenPublication::class) {
+            from(components["java"])
+            artifactId = "spring-microservice-flow-parent"
+        }
+    }
 }
 
 subprojects {
     // 为子项目应用插件
     apply(plugin = "java")
     apply(plugin = "com.diffplug.spotless" )
-    apply(plugin = "org.springframework.boot")
-    apply(plugin = "org.graalvm.buildtools.native")
     apply(plugin = "io.spring.dependency-management")
 
     tasks.withType<Test> {
@@ -23,8 +27,8 @@ subprojects {
 
     // 为子项目添加依赖
     dependencies{
-        compileOnly("org.projectlombok:lombok")
-        annotationProcessor("org.projectlombok:lombok")
+        compileOnly("org.projectlombok:lombok:1.18.26")
+        annotationProcessor("org.projectlombok:lombok:1.18.26")
     }
 
     // 为子项目添加依赖管理
@@ -42,12 +46,6 @@ subprojects {
         }
     }
 
-    configure<SpotlessExtension> {
-        java {
-            googleJavaFormat()
-            target("**/*.java")
-        }
-    }
 }
 
 allprojects {

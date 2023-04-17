@@ -1,19 +1,13 @@
 plugins {
     id("java")
+    id("maven-publish")
 }
 
-group = "com.olympus"
-version = "1.0.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
+publishing {
+    publications {
+        register("mavenJava", MavenPublication::class) {
+            from(components["java"])
+            artifactId = "spring-microservice-flow-parent"
+        }
+    }
 }
