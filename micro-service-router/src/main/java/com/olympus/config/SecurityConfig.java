@@ -35,12 +35,18 @@ public class SecurityConfig {
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http){
         return http.csrf().disable()
                 .authorizeExchange()
-                .pathMatchers(HttpMethod.POST,"/login").permitAll()
-                .pathMatchers(HttpMethod.GET,"/product-manager/**")
+
+                .pathMatchers(HttpMethod.POST,"/login")
+                .permitAll()
+
+                .pathMatchers(HttpMethod.GET,"/product/**")
                 .hasAnyAuthority("ADMIN","GUEST")
-                .pathMatchers(HttpMethod.POST,"/product-manager/**")
+
+                .pathMatchers(HttpMethod.POST,"/manager/**")
                 .hasAnyAuthority("ADMIN")
-                .anyExchange().authenticated()
+
+                .anyExchange()
+                .authenticated()
                 .and()
                 .addFilterAt(authorizationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
                 .build();
