@@ -7,6 +7,7 @@ object Dependencies {
     const val MYBATIS_SPRING_BOOT_STARTER_VERSION = "3.0.0"
 
     const val ALIBABA_FASTJSON2_VERSION = "2.0.27"
+    const val PROJECT_LOMBOK_VERSION = "1.18.2"
 
     const val SPRING_BOOT_VERSION = "3.0.5"
     const val SPRING_DEPENDENCY_MANAGEMENT_VERSION = "1.1.0"
@@ -15,6 +16,7 @@ object Dependencies {
 
     object Tools {
         const val ALIBABA_FASTJSON2_DEPENDENCIES = "com.alibaba.fastjson2:fastjson2:$ALIBABA_FASTJSON2_VERSION"
+        const val PROJECT_LOMBOK_DEPENDENCIES = "org.projectlombok:lombok:$PROJECT_LOMBOK_VERSION"
     }
     object SpringCloud {
         const val SPRING_CLOUD_DEPENDENCIES = "org.springframework.cloud:spring-cloud-dependencies:$SPRING_CLOUD_DEPENDENCIES_VERSION"

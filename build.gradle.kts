@@ -23,8 +23,8 @@ subprojects {
 
     // 为子项目添加依赖
     dependencies{
-        compileOnly("org.projectlombok:lombok:1.18.26")
-        annotationProcessor("org.projectlombok:lombok:1.18.26")
+        compileOnly(Dependencies.Tools.PROJECT_LOMBOK_DEPENDENCIES)
+        annotationProcessor(Dependencies.Tools.PROJECT_LOMBOK_DEPENDENCIES)
     }
 
     tasks.withType<Test> {

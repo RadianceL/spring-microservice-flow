@@ -12,6 +12,8 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
     implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")

@@ -3,4 +3,10 @@ spring:
     name: micro-service-router
   cloud:
     nacos:
+      discovery:
+        namespace: c4cd73ab-aedd-49d9-9835-279a42b7f870
       server-addr: ${CLOUD_SERVER:124.222.147.194:8848}
+      config:
+        namespace: c4cd73ab-aedd-49d9-9835-279a42b7f870
+        server-addr: ${CLOUD_SERVER:124.222.147.194:8848}
+        file-extension: yaml

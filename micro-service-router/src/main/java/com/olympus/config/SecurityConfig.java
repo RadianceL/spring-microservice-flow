@@ -36,13 +36,16 @@ public class SecurityConfig {
         return http.csrf().disable()
                 .authorizeExchange()
 
-                .pathMatchers(HttpMethod.POST,"/login")
+                .pathMatchers(HttpMethod.POST,"/api/login")
                 .permitAll()
 
-                .pathMatchers(HttpMethod.GET,"/product/**")
+                .pathMatchers("/provider/**")
+                .denyAll()
+
+                .pathMatchers(HttpMethod.GET,"/api/product/**")
                 .hasAnyAuthority("ADMIN","GUEST")
 
-                .pathMatchers(HttpMethod.POST,"/manager/**")
+                .pathMatchers(HttpMethod.POST,"/api/manager/**")
                 .hasAnyAuthority("ADMIN")
 
                 .anyExchange()

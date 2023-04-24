@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/provider")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthenticationServiceProvider {
 
