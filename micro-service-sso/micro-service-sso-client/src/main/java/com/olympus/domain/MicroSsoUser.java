@@ -1,13 +1,16 @@
 package com.olympus.domain;
 
+import com.olympus.logger.user.UserBaseInfo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class MicroSsoUser {
+@EqualsAndHashCode(callSuper = true)
+public class MicroSsoUser extends UserBaseInfo {
 
     private String id;
 

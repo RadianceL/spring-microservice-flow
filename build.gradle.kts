@@ -2,23 +2,12 @@ plugins {
     // 插件配置
     id("java")
     id("maven-publish")
-    id("org.springframework.boot") version "3.0.5" apply false
+    id("org.springframework.boot") version Dependencies.SPRING_BOOT_VERSION apply false
     id("io.spring.dependency-management") version Dependencies.SPRING_DEPENDENCY_MANAGEMENT_VERSION
-}
-
-publishing {
-    publications {
-        register("mavenJava", MavenPublication::class) {
-            from(components["java"])
-            artifactId = "spring-microservice-flow-parent"
-        }
-    }
 }
 
 subprojects {
     // 为子项目应用插件
-
-    apply(plugin = "java")
     apply(plugin = "io.spring.dependency-management")
 
     // 为子项目添加依赖
@@ -32,8 +21,10 @@ subprojects {
     }
     // 为子项目添加依赖管理
     dependencyManagement{
-
         dependencies{
+            // chaos日志依赖
+            dependency(Dependencies.Tools.OLYMPUS_CHAOS_DEPENDENCIES)
+            // fastjson依赖
             dependency(Dependencies.Tools.ALIBABA_FASTJSON2_DEPENDENCIES)
             // mybatis依赖
             dependency(Dependencies.Mybatis.MYBATIS_SPRING_BOOT_STARTER)
@@ -49,8 +40,8 @@ subprojects {
 }
 
 allprojects {
-    group = "com.olympus"
-    version = "1.0.0-SNAPSHOT"
+    group = Dependencies.ProjectConfig.APPLICATION_GROUP_NAME
+    version = Dependencies.ProjectConfig.APPLICATION_VERSION
     java.sourceCompatibility = JavaVersion.VERSION_17
     java.targetCompatibility = JavaVersion.VERSION_17
 

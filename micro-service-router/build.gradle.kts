@@ -8,6 +8,7 @@ dependencies {
     implementation(project(":micro-service-sso:micro-service-sso-client"))
 
     implementation("com.alibaba.fastjson2:fastjson2")
+    implementation("com.olympus:olympus-chaos-monitor-base-logger")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")

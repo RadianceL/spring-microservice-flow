@@ -3,6 +3,10 @@ plugins {
     id("maven-publish")
 }
 
+dependencies {
+    api("com.olympus:olympus-chaos-monitor-base-logger")
+}
+
 publishing {
     publications {
         register("mavenJava", MavenPublication::class) {

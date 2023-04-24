@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    api(project(":micro-service-basic"))
     api(project(":micro-service-sso:micro-service-sso-client"))
 
     api("com.alibaba.fastjson2:fastjson2")

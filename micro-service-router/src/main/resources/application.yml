@@ -1,0 +1,7 @@
+logging:
+  file:
+    name: /application/catalina.log
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 7
