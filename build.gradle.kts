@@ -8,6 +8,7 @@ plugins {
 
 subprojects {
     // 为子项目应用插件
+    apply(plugin = "java")
     apply(plugin = "io.spring.dependency-management")
 
     // 为子项目添加依赖

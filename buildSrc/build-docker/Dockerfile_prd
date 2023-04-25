@@ -1,0 +1,41 @@
+FROM registry.cn-shanghai.aliyuncs.com/misumi/e-jdk:17.0.4.1
+
+# 传入参数
+ARG ACTIVE_PROFILE
+ARG PROJECT_FILE
+ARG SHELL_FILE
+
+# copy arthas
+COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
+RUN mkdir -p /usr/local/app/gc
+RUN touch /usr/local/app/gc/gc.log
+
+# 添加业务服务jar包
+COPY $PROJECT_FILE /application.jar
+ENV APPLICATION_PROFILE=$ACTIVE_PROFILE
+##docker 服务启动参数
+ENTRYPOINT ["java", \
+    "-XX:+UnlockDiagnosticVMOptions", \
+    "-XX:+UnlockExperimentalVMOptions", \
+    "-XX:MaxMetaspaceSize=384m", \
+    "-XX:ReservedCodeCacheSize=256m", \
+    "-XX:+AlwaysPreTouch", \
+    "-XX:MaxRAMPercentage=70", \
+    "-XX:InitialRAMPercentage=70", \
+    "-XX:+DisableExplicitGC", \
+    "-XX:+UseG1GC", \
+    "-XX:G1HeapRegionSize=16m", \
+    "-XX:G1ReservePercent=25", \
+    "-XX:G1HeapWastePercent=2", \
+    "-XX:InitiatingHeapOccupancyPercent=30", \
+    "-XX:+UseStringDeduplication", \
+    "-XX:+HeapDumpOnOutOfMemoryError", \
+    "-XX:HeapDumpPath=/usr/local/app/oom", \
+    "-Xlog:gc*:file=/usr/local/app/gc/gc.log", \
+    "--add-opens=java.base/java.lang=ALL-UNNAMED", \
+    "--add-opens=java.base/java.util=ALL-UNNAMED", \
+    "--add-opens=java.base/sun.net.util=ALL-UNNAMED", \
+    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:7080", \
+    "-jar", "/application.jar", \
+    "-Dreactor.netty.pool.leasingStrategy=lifo", \
+    "-Dio.netty.tryReflectionSetAccessible=true"]
