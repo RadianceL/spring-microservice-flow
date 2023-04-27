@@ -19,6 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RouterApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(RouterApplication.class, args);
+        SpringApplication.run(RouterApplication.class, args);
     }
 }

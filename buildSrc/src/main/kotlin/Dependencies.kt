@@ -12,9 +12,9 @@ object Dependencies {
 
     const val ALIBABA_FASTJSON2_VERSION = "2.0.27"
     const val OLYMPUS_CHAOS_VERSION = "1.1.2"
-    const val PROJECT_LOMBOK_VERSION = "1.18.2"
+    const val PROJECT_LOMBOK_VERSION = "1.18.26"
 
-    const val SPRING_BOOT_VERSION = "3.0.5"
+    const val SPRING_BOOT_VERSION = "3.0.6"
     const val SPRING_DEPENDENCY_MANAGEMENT_VERSION = "1.1.0"
     const val SPRING_CLOUD_DEPENDENCIES_VERSION = "2022.0.2"
     const val SPRING_CLOUD_DEPENDENCIES_ALIBABA_VERSION = "2022.0.0.0-RC1"

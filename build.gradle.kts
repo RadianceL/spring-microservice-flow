@@ -17,6 +17,12 @@ subprojects {
         annotationProcessor(Dependencies.Tools.PROJECT_LOMBOK_DEPENDENCIES)
     }
 
+    configurations {
+        compileOnly {
+            extendsFrom(configurations.annotationProcessor.get())
+        }
+    }
+
     tasks.withType<Test> {
         useJUnitPlatform()
     }
