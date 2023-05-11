@@ -1,5 +1,7 @@
 package com.olympus.authorization;
 
+import com.olympus.common.user.LoginTypeEnums;
+import com.olympus.inside.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
@@ -15,15 +17,13 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserDetailServiceImpl implements ReactiveUserDetailsService {
 
+    /**
+     * SSO认证中心服务
+     */
+    private final AuthenticationService authenticationService;
+
     @Override
     public Mono<UserDetails> findByUsername(String username) {
-//        return userRepository.findByUsername(username).map(user->{
-//            List<SimpleGrantedAuthority> authorities = user.getAuthorities().stream()
-//                    .map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-//            return User.withUsername(user.getUsername()).password(user.getPassword())
-//                    .authorities(authorities)
-//                    .build();
-//        });
-        return null;
+        return Mono.just(authenticationService.loginByMultipleWays(username, null, LoginTypeEnums.ACCOUNT));
     }
 }

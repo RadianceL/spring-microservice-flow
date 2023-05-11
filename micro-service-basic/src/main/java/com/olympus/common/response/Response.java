@@ -1,5 +1,6 @@
-package com.olympus;
+package com.olympus.common.response;
 
+import com.olympus.ApplicationAppConstants;
 import com.olympus.base.utils.support.globalization.GlobalMessage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
