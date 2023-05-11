@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    api("com.olympus:olympus-artemis-base:1.0.13")
+    api("com.olympus:olympus-artemis-starter")
 
     implementation("com.alibaba.fastjson2:fastjson2")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter")

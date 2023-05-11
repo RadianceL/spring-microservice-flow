@@ -35,6 +35,8 @@ subprojects {
             dependency(Dependencies.Tools.ALIBABA_FASTJSON2_DEPENDENCIES)
             // mybatis依赖
             dependency(Dependencies.Mybatis.MYBATIS_SPRING_BOOT_STARTER)
+            // 工具包依赖
+            dependency(Dependencies.Tools.OLYMPUS_ARTEMIS_VERSION_DEPENDENCIES)
             imports {
                 mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
                 // spring-cloud-dependencies依赖

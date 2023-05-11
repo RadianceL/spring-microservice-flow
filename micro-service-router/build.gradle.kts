@@ -1,7 +1,16 @@
 plugins{
-    id("java")
+    java
     id("org.springframework.boot") version Dependencies.SPRING_BOOT_VERSION
     id("org.graalvm.buildtools.native") version Dependencies.GRAALVM_NATIVE_VERSION
+}
+
+graalvmNative {
+    binaries {
+        named("main") {
+            mainClass.set("com.olympus.RouterApplication")
+            buildArgs.addAll("--initialize-at-run-time=ch.qos.logback.classic.Logger", "--no-fallback","--trace-object-instantiation=ch.qos.logback.classic.Logger")
+        }
+    }
 }
 
 dependencies {
