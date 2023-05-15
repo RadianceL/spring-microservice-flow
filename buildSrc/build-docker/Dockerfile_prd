@@ -17,17 +17,12 @@ ENV APPLICATION_PROFILE=$ACTIVE_PROFILE
 ENTRYPOINT ["java", \
     "-XX:+UnlockDiagnosticVMOptions", \
     "-XX:+UnlockExperimentalVMOptions", \
-    "-XX:MaxMetaspaceSize=384m", \
-    "-XX:ReservedCodeCacheSize=256m", \
     "-XX:+AlwaysPreTouch", \
-    "-XX:MaxRAMPercentage=70", \
-    "-XX:InitialRAMPercentage=70", \
+    "-XX:MaxRAMPercentage=75", \
     "-XX:+DisableExplicitGC", \
     "-XX:+UseG1GC", \
-    "-XX:G1HeapRegionSize=16m", \
-    "-XX:G1ReservePercent=25", \
-    "-XX:G1HeapWastePercent=2", \
-    "-XX:InitiatingHeapOccupancyPercent=30", \
+    "-XX:G1HeapRegionSize=8m", \
+    "-XX:G1ReservePercent=15", \
     "-XX:+UseStringDeduplication", \
     "-XX:+HeapDumpOnOutOfMemoryError", \
     "-XX:HeapDumpPath=/usr/local/app/oom", \
