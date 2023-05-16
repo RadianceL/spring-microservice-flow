@@ -1,6 +1,7 @@
 package com.olympus.config;
 
 import com.olympus.config.filter.AuthorizationFilter;
+import com.olympus.config.filter.SmsCodeAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
@@ -30,6 +32,7 @@ import java.util.Map;
 public class SecurityConfig {
 
     private final AuthorizationFilter authorizationFilter;
+    private final SmsCodeAuthenticationFilter smsCodeAuthenticationFilter;
 
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http){
@@ -52,6 +55,7 @@ public class SecurityConfig {
                 .authenticated()
                 .and()
                 .addFilterAt(authorizationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
+                .addFilterAt(smsCodeAuthenticationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
                 .build();
     }
 
@@ -62,10 +66,9 @@ public class SecurityConfig {
         return manager;
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        Map<String, PasswordEncoder> encoders = new HashMap<>();
-        encoders.put("bcrypt", new BCryptPasswordEncoder());
-        return new DelegatingPasswordEncoder("bcrypt", encoders);
+        return NoOpPasswordEncoder.getInstance();
     }
 }

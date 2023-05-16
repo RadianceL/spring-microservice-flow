@@ -30,7 +30,7 @@ public class AuthorizationFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         System.out.println("filter....." + exchange.getRequest().getPath());
-        if (exchange.getRequest().getPath().toString().equals("/login")) {
+        if (exchange.getRequest().getPath().toString().equals("/api/login")) {
             Authentication auth = new UsernamePasswordAuthenticationToken("john", "123",
                     List.of(new SimpleGrantedAuthority("PRODUCT_GUEST")));
             return chain.filter(exchange).contextWrite(ReactiveSecurityContextHolder.withAuthentication(auth));

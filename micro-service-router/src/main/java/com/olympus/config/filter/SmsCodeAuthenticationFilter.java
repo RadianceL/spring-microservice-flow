@@ -1,11 +1,14 @@
 package com.olympus.config.filter;
 
 import com.olympus.config.sms.SmsCodeAuthenticationToken;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -17,6 +20,8 @@ import java.util.Objects;
  * @author eddie.lys
  * @since 2023/5/11
  */
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SmsCodeAuthenticationFilter implements WebFilter {
 
     private final String MOBILE_PARAMETER = "mobile";

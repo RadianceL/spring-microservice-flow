@@ -1,6 +1,8 @@
 package com.olympus.controller.provider;
 
+import com.google.common.collect.Lists;
 import com.olympus.common.response.ServiceResponse;
+import com.olympus.common.user.UserBaseInfo;
 import com.olympus.logger.event.annotation.EventTrace;
 import com.olympus.logger.event.model.LoggerType;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,11 @@ public class AuthenticationServiceProvider {
      */
     @PostMapping("/internal/user-info/query")
     @EventTrace(event = "内部接口 - 用户信息查询", loggerType = LoggerType.FORMAT)
-    public ServiceResponse<String> internalUserInfoQuery(@RequestParam("username") String username) {
-        return ServiceResponse.ofSuccess(username);
+    public ServiceResponse<UserBaseInfo> internalUserInfoQuery(@RequestParam("username") String username) {
+        UserBaseInfo userInfo = new UserBaseInfo();
+        userInfo.setUsername(username);
+        userInfo.setPassword("0000");
+        userInfo.setAuthoritiesRoles(Lists.newArrayList("AA", "ADMIN"));
+        return ServiceResponse.ofSuccess(userInfo);
     }
 }

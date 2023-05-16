@@ -1,8 +1,6 @@
 package com.olympus.config.sms;
 
 import com.olympus.common.user.LoginTypeEnums;
-import com.olympus.common.user.UserInfo;
-import com.olympus.exception.InternalServiceException;
 import com.olympus.inside.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
-import java.util.Objects;
 
 /**
  * @author eddie.lys
@@ -33,15 +29,9 @@ public class SmsCodeAuthenticationProvider implements ReactiveAuthenticationMana
         String mobile = authentication.getName();
         String verifyCode = authentication.getCredentials().toString();
 
-        UserInfo userInfo;
-        try {
-            userInfo = authenticationService.loginByMultipleWays(mobile, verifyCode, LoginTypeEnums.PHONE_VERIFY);
-        }catch (InternalServiceException internalServiceException) {
-            return Mono.error(new BadCredentialsException(internalServiceException.getMessage()));
-        }
-        if (Objects.isNull(userInfo)) {
-            return Mono.error(new BadCredentialsException("Invalid code"));
-        }
-        return Mono.just(new UsernamePasswordAuthenticationToken(mobile, verifyCode, userInfo.getAuthorities()));
+        return authenticationService.loginByMultipleWays(mobile, verifyCode, LoginTypeEnums.PHONE_VERIFY)
+                .map(userDetails -> new UsernamePasswordAuthenticationToken(mobile, verifyCode, userDetails.getAuthorities()))
+                .switchIfEmpty(Mono.error(new BadCredentialsException("Invalid code")))
+                .flatMap(Mono::just);
     }
 }
