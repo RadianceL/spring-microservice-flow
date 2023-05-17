@@ -14,6 +14,7 @@ object Dependencies {
     const val OLYMPUS_ARTEMIS_VERSION = "1.1.0"
     const val OLYMPUS_CHAOS_VERSION = "1.1.2"
     const val PROJECT_LOMBOK_VERSION = "1.18.26"
+    const val SHARDING_SPHERE_VERSION = "5.2.1"
 
     const val SPRING_BOOT_VERSION = "3.0.6"
     const val SPRING_DEPENDENCY_MANAGEMENT_VERSION = "1.1.0"
@@ -25,6 +26,7 @@ object Dependencies {
         const val OLYMPUS_CHAOS_DEPENDENCIES = "com.olympus:olympus-chaos-monitor-base-logger:$OLYMPUS_CHAOS_VERSION"
         const val OLYMPUS_ARTEMIS_VERSION_DEPENDENCIES = "com.olympus:olympus-artemis-starter:$OLYMPUS_ARTEMIS_VERSION"
         const val PROJECT_LOMBOK_DEPENDENCIES = "org.projectlombok:lombok:$PROJECT_LOMBOK_VERSION"
+        const val SHARDING_SPHERE_DEPENDENCIES = "org.apache.shardingsphere:shardingsphere-jdbc-core-spring-boot-starter:$SHARDING_SPHERE_VERSION"
     }
 
     object SpringCloud {

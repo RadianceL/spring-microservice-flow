@@ -5,6 +5,7 @@ plugins {
 dependencies {
     api(project(":micro-service-basic"))
     api(project(":micro-service-sso:micro-service-sso-client"))
+    api(project(":micro-service-sso:micro-service-sso-dal"))
 
     api("com.alibaba.fastjson2:fastjson2")
     api("org.springframework.boot:spring-boot-starter-web")
