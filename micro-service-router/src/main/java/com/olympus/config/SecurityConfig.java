@@ -54,8 +54,9 @@ public class SecurityConfig {
                 .anyExchange()
                 .authenticated()
                 .and()
-                .addFilterAt(authorizationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
-                .addFilterAt(smsCodeAuthenticationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
+//                .addFilterAt(smsCodeAuthenticationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
+//                .addFilterAt(authorizationFilter, SecurityWebFiltersOrder.AUTHORIZATION)
+
                 .build();
     }
 

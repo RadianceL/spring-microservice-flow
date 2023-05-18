@@ -29,6 +29,7 @@ public class SmsCodeAuthenticationFilter implements WebFilter {
 
     @Override
     public @NotNull Mono<Void> filter(@NotNull ServerWebExchange exchange, @NotNull WebFilterChain chain) {
+        System.out.println("SmsCodeAuthenticationFilter filter....." + exchange.getRequest().getPath());
         if (isAuthenticationRequest(exchange)) {
             return authenticate(exchange);
         } else {
